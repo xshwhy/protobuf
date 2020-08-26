@@ -1,0 +1,28 @@
+syntax = "proto3";
+//生成文件所在包名
+option java_package = "com.iotmars.entity.model";
+//生成的java文件名
+option java_outer_classname = "CookUpdateModel";
+
+
+message cookBookUpdateIdList {
+
+
+    int32 menuId = 1;  // 菜谱id
+
+    int32 menuType = 2; // 菜谱类型
+
+    int32 menuVersion = 3; // 单个菜谱版本号
+}
+
+
+
+message CookUpdate {
+
+    string cookBookUpdateVersion = 4; // 总菜谱版本号
+
+    int32  cookBookUpdateIdListCnt = 5; // 菜谱更新次数
+
+    repeated cookBookUpdateIdList idList = 6; // 菜谱更新集合
+
+}
