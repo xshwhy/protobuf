@@ -1,0 +1,78 @@
+syntax = "proto3";
+//生成文件所在包名
+option java_package = "com.iotmars.entity.model";
+//option java_package = "com.martx.protobuf.model";
+//生成的java文件名
+option java_outer_classname = "MenuModel";
+
+package menu;
+
+message menuParameters {
+    int32 parameterEnum = 1; // 参数枚举 例如 1   2   3    4    5       1     2     1   ...    100
+    string parameter = 2; // 具体烹饪参数      嫩  老 普通  劲道 酥软     深    浅    100         10000
+    int32 totalTime = 3;  // 烹饪时长
+    repeated arithmeticSteps arithmeticStep = 4; // 算法步骤集合
+}
+
+message arithmeticSteps {
+    int32 no = 5; // 步骤编号 1-6
+    int32 temp = 6; // 烹饪温度25-230
+    int32 time = 7; // 烹饪时长 1-600min
+   /* enum Mode {
+        SO_MODE_NONE= 0;  // 无模式
+        SO_MODE_S_FISH =1; // 蒸鱼
+        SO_MODE_S_EGG = 2; // 蒸蛋
+        SO_MODE_S_FLOUR = 3;  // 面点
+        SO_MODE_S_SEAFOOD= 4;  // 蒸海鲜
+
+        SO_MODE_S_NORMAL = 5;        // 普通蒸
+        SO_MODE_S_FRESH_ENERGY = 6;  // 鲜嫩蒸
+        SO_MODE_S_TEMP_KEEP = 7;     // 保温
+        SO_MODE_S_FERMENTATION = 8;  // 发酵
+        SO_MODE_S_DEFORST = 9;       // 解冻
+
+        SO_MODE_O_MEAT_STR = 10;       // 肉串
+        SO_MODE_O_CHICKEN_WINGS = 11; // 鸡翅
+        SO_MODE_O_EGG_TART = 12;       // 蛋挞
+        SO_MODE_O_BARBECUE = 13;       // 烧烤
+
+        SO_MODE_O_UP_DOWN = 14;        // 上下烧烤
+        SO_MODE_O_FAN_UP_DOWN = 15;    // 速热
+        SO_MODE_O_FAN_BEHIND  = 16;     // 立体热风
+        SO_MODE_O_DOWN = 17;           // 底加热
+        SO_MODE_O_CHARCOAL = 18;       // 强烧烤
+        SO_MODE_O_FAN_CHARCOAL = 19;   // 热风烧烤
+    }
+    Mode mode = 8; // 烹饪模式*/
+    int32 mode = 8; // 烹饪模式
+    bool remindVoice = 9; // 烹饪提醒语音 true false
+    string remindText = 10; // 烹饪提醒文字  牛排翻面
+}
+
+message menuSteps {
+    string step  = 11; // 步骤号
+    string stepImg = 12; // 步骤图
+    string stepDesc = 13; // 步骤描述
+}
+
+message menuInfo {
+    int32 menuId = 14; // 菜谱id
+    string menuName = 15; // 菜谱名称
+    int32 defaultParameter = 16; // 菜谱默认规格参数
+    string intro = 17; // 菜谱介绍
+    string materials = 18; // 食材清单
+    string materialsImg = 19; // 食材清单图片
+    string headImg = 20; // 菜谱首图
+    string menuVoice = 21; // 菜谱语音
+    string menuVideo = 22; // 菜谱视频
+    int32 arithmeticType = 23; // 算法类型 重量 1 口感 2 外观 3
+    int32 steamRoastTag = 24; // 蒸烤标记
+    int32 menuType = 25; // 菜谱类型 1 蔬菜  2 肉类 3 水产 4 面点 5 烘焙  6 其它
+    string menuVersion = 26; //  菜谱版本号 1.00 * 100
+    repeated menuParameters menuParameter = 27; // 菜谱规格参数
+    repeated menuSteps menuStep = 28;  // 菜谱烹饪步骤
+}
+
+message protoMenu {
+    repeated menuInfo info = 29; // 菜谱集合
+}

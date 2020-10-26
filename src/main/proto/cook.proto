@@ -1,0 +1,64 @@
+syntax = "proto3";
+//生成文件所在包名
+option java_package = "com.iotmars.entity.model";
+//生成的java文件名
+option java_outer_classname = "CookModel";
+
+package cook;
+
+message menuParameter {
+    int32 parameterEnum = 1; // 参数枚举 例如 1   2   3    4    5       1     2     1   ...    100
+    string parameter = 2; // 具体烹饪参数      嫩  老 普通  劲道 酥软     深    浅    100         10000
+    repeated protoStep step = 3; // 烹饪步骤集合
+}
+
+message protoStep {
+    int32 no = 4; // 步骤编号 1-6
+    int32 temp = 5; // 烹饪温度25-230
+    int32 time = 6; // 烹饪时长 1-600min
+    enum Mode {
+        MODE_NONE = 0x00;
+        MODE_STEAM = 0x01; // 经典蒸
+        MODE_FLASH_STEAM = 0x02; // 快速蒸
+        MODE_SOLID_HOT_WIND = 0x21; // 立体热风
+        MODE_BASE_HEAT = 0x22; // 底加热
+        MODE_BBQ = 0x23; // 烧烤
+        MODE_STRONG_BBQ = 0x24; // 强烧烤
+        MODE_HOT_WIND_BBQ = 0x25; // 热风烧烤
+        MODE_UP_DOWN_HEAT = 0x26; // 上下加热
+        MODE_HOT_WIND_BACK = 0x27; // 热风烤
+        MODE_STEAM_BACK = 0x28; // 蒸汽烤
+        MODE_UNFREEZE = 0x41; // 解冻
+        MODE_FERMENTATION = 0x42; // 发酵
+        MODE_STERILIZATION = 0x43; // 杀菌
+        MODE_KEEP_WARM = 0x44; // 保温
+        MODE_DRYING = 0x45; // 烘干
+        MODE_DESCALING = 0x46; // 除垢
+    }
+    Mode mode = 7; // 烹饪模式
+    bool remindVoice = 8; // 烹饪提醒语音 true false
+    string remindText = 9; // 烹饪提醒文字  牛排翻面
+    int32 steamTime = 10; //蒸汽盘外圈时间
+    int32 fanTime = 11; //侧面风机时间
+    int32 waterTime = 12; //注水时间
+}
+
+message protoInfo {
+    int32 id = 13; // 菜谱id
+    string name = 14; // 菜谱名称
+    int32 defaultParameter = 15; // 菜谱默认规格参数
+    string intro = 16; // 菜谱介绍
+    string materials = 17; // 菜谱食材清单
+    string steps = 18; // 菜谱烹饪步骤
+    string menuUrl = 19; // 菜谱图片url
+    string voiceUrl = 20; // 音频url
+    int32 type = 21; // 算法类型 重量 1 口感 2 外观 3
+    int32 menuType = 22; // 菜谱类型 1 蔬菜  2 肉类 3 水产 4 面点 5 烘焙  6 其它
+    int32 menuVersion = 23; //  菜谱版本号 1.00 * 100
+    repeated menuParameter parameter = 24; // 菜谱规格参数
+}
+
+message protoCookbook {
+    repeated protoInfo info = 25;
+
+}
