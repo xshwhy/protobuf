@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+//生成文件所在包名
+option java_package = "com.iotmars.entity.model";
+//生成的java文件名
+option java_outer_classname = "CookCollectModel";
+
+package cookcollect;
+
+message protoStep {
+    int32 no = 1;
+    int32 temp = 2;
+    int32 time = 3;
+    enum Mode {
+        MODE_NONE = 0x00;   // 无
+        MODE_STEAM = 0x01; // 经典蒸
+        MODE_FLASH_STEAM = 0x02; // 快速蒸
+        MODE_FAN_TO_BAKE = 0x21; // 风扇烤
+        MODE_STRONG_BARBECUE = 0x22; // 强烧烤
+        MODE_HOT_BARBECUE = 0x23; // 热风烧烤
+        MODE_UP_DOWN_HEAT = 0x24; // 上下加热
+        MODE_HOT_WIND_BACK = 0x25; // 热风烤
+        MODE_SOLID_HOT_WIND = 0x26; // 立体风
+        MODE_TENDER_ROAST = 0x27; // 嫩烤
+
+        MODE_UNFREEZE = 0x41; // 解冻
+        MODE_FERMENTATION = 0x42; // 发酵
+        MODE_STERILIZATION = 0x43; // 杀菌
+        MODE_KEEP_WARM = 0x44; // 保温
+        MODE_DRYING = 0x45; // 烘干
+        MODE_DESCALING = 0x46; // 除垢
+        MODE_DELAY = 0x47; // 延时
+    }
+    Mode mode = 4;
+    bool remind = 5; // 烹饪提醒 true false
+    string remindText = 6; // 烹饪提醒文字  牛排翻面
+    int32 steamTime = 7; //蒸汽盘外圈时间
+    int32 fanTime = 8; //侧面风机时间
+    int32 waterTime = 9; //注水时间
+}
+
+message protoCookCollect {
+    int32 menuId = 7; // 菜谱id
+    string name = 8; // 菜谱名称
+    string deviceMac = 9; // 设备编号
+    int32 pId = 10; // 设备端收藏菜谱id
+    string deviceType = 11; // 设备类型
+    repeated protoStep step = 12; // 烹饪步骤
+}

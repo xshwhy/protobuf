@@ -17,23 +17,24 @@ message protoStep {
     int32 temp = 5; // 烹饪温度25-230
     int32 time = 6; // 烹饪时长 1-600min
     enum Mode {
-        MODE_NONE = 0x00;
+        MODE_NONE = 0x00;   // 无
         MODE_STEAM = 0x01; // 经典蒸
         MODE_FLASH_STEAM = 0x02; // 快速蒸
-        MODE_SOLID_HOT_WIND = 0x21; // 立体热风
-        MODE_BASE_HEAT = 0x22; // 底加热
-        MODE_BBQ = 0x23; // 烧烤
-        MODE_STRONG_BBQ = 0x24; // 强烧烤
-        MODE_HOT_WIND_BBQ = 0x25; // 热风烧烤
-        MODE_UP_DOWN_HEAT = 0x26; // 上下加热
-        MODE_HOT_WIND_BACK = 0x27; // 热风烤
-        MODE_STEAM_BACK = 0x28; // 蒸汽烤
+        MODE_FAN_TO_BAKE = 0x21; // 风扇烤
+        MODE_STRONG_BARBECUE = 0x22; // 强烧烤
+        MODE_HOT_BARBECUE = 0x23; // 热风烧烤
+        MODE_UP_DOWN_HEAT = 0x24; // 上下加热
+        MODE_HOT_WIND_BACK = 0x25; // 热风烤
+        MODE_SOLID_HOT_WIND = 0x26; // 立体风
+        MODE_TENDER_ROAST = 0x27; // 嫩烤
+
         MODE_UNFREEZE = 0x41; // 解冻
         MODE_FERMENTATION = 0x42; // 发酵
         MODE_STERILIZATION = 0x43; // 杀菌
         MODE_KEEP_WARM = 0x44; // 保温
         MODE_DRYING = 0x45; // 烘干
         MODE_DESCALING = 0x46; // 除垢
+        MODE_DELAY = 0x47; // 延时
     }
     Mode mode = 7; // 烹饪模式
     bool remindVoice = 8; // 烹饪提醒语音 true false
